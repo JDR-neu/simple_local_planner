@@ -65,7 +65,11 @@ class SimpleLocalPlanner : public nav_core::BaseLocalPlanner {
             {
                 plan_index_++;
                 ROS_INFO_STREAM("Reached waypoint window(dist, angle): (" << dist << "," << eth << ")");
-            }else{
+            }else
+            {
+                //prev_ex_ = ex;
+                //prev_ey_ = ey;
+                //prev_eth_ = eth;
                 break;
             }            
         }
@@ -89,7 +93,7 @@ class SimpleLocalPlanner : public nav_core::BaseLocalPlanner {
           else
           {
             vx = 0;
-            ROS_INFO_STREAM("x-error: " << ex << " within deadband: " << p_deadband_);
+            //ROS_INFO_STREAM("x-error: " << ex << " within deadband: " << p_deadband_);
           }
           
           
@@ -100,7 +104,7 @@ class SimpleLocalPlanner : public nav_core::BaseLocalPlanner {
           else
           {
             vy = 0;
-            ROS_INFO_STREAM("y-error: " << ey << " within deadband: " << p_deadband_);
+            //ROS_INFO_STREAM("y-error: " << ey << " within deadband: " << p_deadband_);
           }
           
           if( fabs(eth) > o_deadband_ || plan_index_== n-1)
@@ -110,7 +114,7 @@ class SimpleLocalPlanner : public nav_core::BaseLocalPlanner {
           else
           {
             vth = 0;
-            ROS_INFO_STREAM("th-error: " << eth << " within deadband: " << o_deadband_);
+            //ROS_INFO_STREAM("th-error: " << eth << " within deadband: " << o_deadband_);
           }
           
           ROS_INFO_STREAM("Trans-x: vx, ex, prev_ex: " << vx << "," << ex << "," << prev_ex_);
@@ -134,7 +138,7 @@ class SimpleLocalPlanner : public nav_core::BaseLocalPlanner {
         }
         else
         {
-          ROS_WARN_STREAM("Change in error below min threshold( " << MIN_CHANGE_THRESH << "), not updating velocity");
+          //ROS_WARN_STREAM("Change in error below min threshold( " << MIN_CHANGE_THRESH << "), not updating velocity");
         }
        
         cmd_vel.linear.x = vx;
